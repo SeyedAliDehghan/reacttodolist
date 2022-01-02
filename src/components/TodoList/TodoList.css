@@ -8,6 +8,8 @@
     border: 1px solid grey;
     border-radius: 5px;
     padding: 10px;
+    background:#647989;
+    color:#F5F9FA;
 }
 lable{
     cursor: pointer;
