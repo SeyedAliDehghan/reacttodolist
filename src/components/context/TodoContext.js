@@ -1,16 +1,22 @@
-import { useReducer, createContext } from 'react'
-import {data} from '..'
-import reducer from './reducer'
+import { useReducer, createContext, useState } from "react";
+import { data } from "..";
+import reducer from "./reducer";
 
-export const TodoListContext = createContext({ todoList: [], dispatch: () => { } })
-
+export const TodoListContext = createContext({
+  todoList: [],
+  dispatch: () => {},
+});
+export const FilterContext = createContext({ filter: "", setFilter: () => {} });
 const TodoListContextProvider = ({ children }) => {
-    const [todoList, dispatch] = useReducer(reducer, data)
-    return (
-        <TodoListContext.Provider value={{ todoList, dispatch }}>
-            {children}
-        </TodoListContext.Provider>
-    )
-}
+  const [todoList, dispatch] = useReducer(reducer, data);
+  const [filter, setFilter] = useState("");
+  return (
+    <TodoListContext.Provider value={{ todoList, dispatch }}>
+      <FilterContext.Provider value={{ filter, setFilter }}>
+          {children}
+      </FilterContext.Provider>
+    </TodoListContext.Provider>
+  );
+};
 
-export default TodoListContextProvider
+export default TodoListContextProvider;

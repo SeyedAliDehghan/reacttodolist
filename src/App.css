@@ -1,17 +1,3 @@
-.todoList{
-    display: flex;
-}
-.todoList > .todo{
-    margin:15px;
-}
-.todo{
-    border: 1px solid grey;
-    border-radius: 5px;
-    padding: 10px;
-}
-lable{
-    cursor: pointer;
-}
-li{
-    margin-top:10px;
+body{
+    background: #F5F9FA;
 }
