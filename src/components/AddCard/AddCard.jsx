@@ -10,10 +10,12 @@ const AddCard = () => {
     const name = prompt("Enter Todo Title");
     const description = prompt("Enter Todo description");
     dispatch({ type: types.addNewTodo, payload: { name, description } });
+    console.log(todoList);
   };
   return (
     <Col xs={12} sm={6} lg={2}>
       <Card
+      key={0}
         onClick={() => handleAddTodo()}
         style={{ background: "#647989", height: "18rem",cursor:"pointer" }}
         className="mt-3"

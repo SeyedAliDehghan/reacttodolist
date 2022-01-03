@@ -42,8 +42,9 @@ function TodoList() {
             todos.name.toLowerCase().includes(filter.toLowerCase())
           )
           .map((todo) => (
-            <Col xs={12} sm={6} lg={2}>
+            <Col key={todo.id} xs={12} sm={6} lg={2}>
               <TodoCard
+              
                 id={todo.id}
                 name={todo.name}
                 description={todo.description}

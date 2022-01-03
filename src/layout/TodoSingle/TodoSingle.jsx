@@ -7,6 +7,8 @@ const TodoSingle = () => {
   const { todoList, dispatch } = useContext(TodoListContext);
   const params = useParams();
   const SelectedTodo = todoList.filter((todo) => todo.id === parseInt(params.todoId))[0];
+  // console.log(SelectedTodo);
+  console.log(todoList);
 
   return (
     <div>
@@ -24,7 +26,7 @@ const TodoSingle = () => {
                 Back
               </h2>
             </div>
-            {SelectedTodo.items.map((item) => (
+            {/* {SelectedTodo.items.map((item) => (
               <Card  className="mb-2" style={{background: "#647989",color: "#F5F9FA"}}>
                 <Card.Body>
                 <input className="checkBox"
@@ -36,7 +38,7 @@ const TodoSingle = () => {
                   <Card.Title style={{ display: "inline-block"}}>{item.title}</Card.Title>
                 </Card.Body>
               </Card>
-            ))}
+            ))} */}
           </Col>
         </Row>
       </Container>

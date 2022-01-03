@@ -27,10 +27,10 @@ function TodoList() {
   return (
     <CardsContainer>
       <Row className="mt-2">
-        <AddCard/>
+        {/* <AddCard/> */}
         {todoList.map((todo) => (
           <Col xs={8} sm={6} lg={2}>
-            <TodoCard id={todo.id} name={todo.name} description={todo.description}/>
+            <TodoCard  id={todo.id} name={todo.name} description={todo.description}/>
           </Col>
         ))}
       </Row>
