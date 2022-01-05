@@ -11,6 +11,12 @@ const TodoItems = ({todoItems,selectedTodoId}) => {
           payload: { todoId, itemId, checked: e.target.checked },
         });
     }
+    const handleDeleteItem = (todoId, itemId) => {
+      dispatch({
+        type: types.deleteTodoItem,
+        payload: { todoId, itemId }
+    })
+  }
     if (todoItems.length === 0) {
         return <div>Add Some Todo Item</div>;
       } else {
@@ -32,6 +38,7 @@ const TodoItems = ({todoItems,selectedTodoId}) => {
               <Card.Title style={{ display: "inline-block" }}>
                 {item.title}
               </Card.Title>
+              <span onClick={()=>handleDeleteItem(selectedTodoId, item.id)} style={{display: "inline-block",float:"right",cursor:"pointer"}}>X</span>
             </Card.Body>
           </Card>
         ));

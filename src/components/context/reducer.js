@@ -39,6 +39,12 @@ function reducer(state, action) {
             }
           : todo
       );
+      case "deleteTodoItem":
+        return state.map((todo) =>
+        todo.id === payload.todoId
+          ? { ...todo, items: todo.items.filter(item=> item !== payload.itemId) }
+          : todo
+      );
     default:
       return state;
   }
@@ -48,6 +54,7 @@ export const types={
     addNewTodo:'addNewTodo',
     deleteTodo:'deleteTodo',
     addTodoItem:'addTodoItem',
-    updateItemStatus:'updateItemStatus'
+    updateItemStatus:'updateItemStatus',
+    deleteTodoItem:'deleteTodoItem'
 }
 export default reducer
