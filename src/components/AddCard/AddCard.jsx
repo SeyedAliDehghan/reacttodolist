@@ -57,7 +57,7 @@ const AddCard = () => {
             justifyContent: "center",
           }}
         >
-          <img src={AddIcon} style={{ width: "30%", height: "30%" }} alt="" />
+          <img src={AddIcon} style={{ width: "20%", height: "20%" }} alt="" />
         </div>
       </Card>
     </Col>

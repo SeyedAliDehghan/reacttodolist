@@ -3,26 +3,39 @@ import { useContext } from "react";
 import { types, TodoListContext } from "..";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const TodoCard = ({ id, name, description }) => {
   const { todoList, dispatch } = useContext(TodoListContext);
-  const handleAddTodo = () => {
-    const name = prompt("Enter Todo Title");
-    const description = prompt("Enter Todo description");
-    dispatch({ type: types.addNewTodo, payload: { name, description } });
-  };
   const handleDeleteTodo = (id) => {
     dispatch({ type: types.deleteTodo, payload: { id } });
   };
-  const handleAddTodoItem = (id) => {
-    const title = prompt("Enter Todo Item Title");
-    dispatch({ type: types.addTodoItem, payload: { id, title } });
-  };
-  const handleChangeItemStatus = (todoId, itemId, e) => {
-    dispatch({
-      type: types.updateItemStatus,
-      payload: { todoId, itemId, checked: e.target.checked },
-    });
+  const handleEditTodo = (id,name,description) => {
+    (async () => {
+      const { value: formValues } = await Swal.fire({
+        title: "Edit Todo",
+        html:
+          `<input id="swal-input1" value="${name}" class="swal2-input">` +
+          `<input id="swal-input2" value="${description}" class="swal2-input">`,
+        focusConfirm: false,
+        preConfirm: () => {
+          return [
+            document.getElementById("swal-input1").value,
+            document.getElementById("swal-input2").value,
+          ];
+        },
+      });
+
+      if (formValues) {
+        dispatch({ type: types.editTodo, payload: { id:id,newName:formValues[0],newDes:formValues[1] } });
+        Swal.fire({
+          icon: 'success',
+          title: 'Done...',
+          text: 'Todo Edited!',
+        })
+      }
+    })();
   };
   return (
     <Card style={{ background: "#647989", height: "18rem" }} className="mt-3">
@@ -73,9 +86,22 @@ const TodoCard = ({ id, name, description }) => {
               width: "100%",
               marginTop: "5px",
             }}
+            onClick={() => handleEditTodo(id,name,description)}
+          >
+            Edit
+          </Button>
+          <Button
+            style={{
+              border: "none",
+              background: "#F5F9FA",
+              color: "#647989",
+              display: "block",
+              width: "100%",
+              marginTop: "5px",
+            }}
             onClick={() => handleDeleteTodo(id)}
           >
-            Delete Todo
+            Delete
           </Button>
         </div>
       </Card.Body>
